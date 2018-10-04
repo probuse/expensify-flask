@@ -10,3 +10,11 @@ class ViewsTestCase(unittest.TestCase):
     def test_home_page_loads(self):
         response = self.app.get('/', content_type='html/text')
         self.assertEqual(response.status_code, 200)
+
+    def test_login_page_loads(self):
+        response = self.app.get('/login', content_type='html/text')
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_page_returns_right_content(self):
+        response = self.app.get('/login', content_type='html/text')
+        self.assertIn(b'Please Login', response.data)
